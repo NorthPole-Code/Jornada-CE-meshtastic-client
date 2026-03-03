@@ -1,0 +1,132 @@
+# Jornada CE Meshtastic Client  
+Windows CE (HPC2000) – eMbedded Visual C++ Project
+
+## Overview
+
+This repository contains the source code for a native Windows CE Meshtastic client targeting:
+
+- HP Jornada 720  
+- HP Jornada 728  
+
+The project was developed using **Microsoft eMbedded Visual C++ 3.0** and targets **Win32 (WCE ARM)**.
+
+Tested hardware:
+- Lilygo T-Beam  
+- Meshtastic firmware 2.7.15  
+
+---
+
+## Development Environment
+
+Required tools:
+
+- Microsoft eMbedded Visual C++ 3.0  
+- Windows CE HPC2000 SDK  
+- ARM target configuration  
+
+This project is **not compatible with modern Visual Studio**.
+
+---
+
+## Opening the Project
+
+1. Start eMbedded Visual C++ 3.0  
+2. Open:
+
+
+MESHTASTIC.VCW
+
+
+3. Select build configuration:
+
+
+Win32 (WCE ARM) Debug
+
+
+4. Build the project.
+
+---
+
+## Project Structure
+
+Key files:
+
+- `MESHTASTIC.VCW` – Workspace file  
+- `MESHTASTIC.VCP` – Project file  
+- `MESHTASTIC.rc` – Resource file  
+- `resource.h` – Resource definitions  
+- `newres.h` – Resource helper  
+
+Source files are located in the root:
+
+- `*.cpp`
+- `*.h`
+
+---
+
+## Build Output
+
+Compiled binaries are generated in:
+
+
+ARMDbg/
+ARMRel/
+
+
+These directories are excluded from version control.
+
+---
+
+## Runtime Requirements
+
+The application expects external files on CF card:
+
+
+\Storage Card\Meshtastic\
+
+
+Maps must consist of:
+
+- `.bmp`
+- `.bpw`
+
+Projection: EPSG:4326 (WGS84)  
+Maximum recommended resolution: 1500x1500 pixels  
+
+---
+
+## Serial Communication
+
+The application communicates over RS232.
+
+Typical connection chain:
+
+Meshtastic node (3.3V UART)  
+→ TTL-to-RS232 level converter  
+→ DB9 (male recommended)  
+→ Jornada sync cable  
+
+If communication fails:
+- Verify TX/RX crossover
+- Check null modem requirements
+- Confirm 3.3V logic levels
+
+---
+
+## Cleaning the Project
+
+If build problems occur:
+
+1. Delete:
+   - `ARMDbg/`
+   - `ARMRel/`
+
+2. Rebuild the solution.
+
+---
+
+## Notes
+
+- Pure Win32 CE API (no external libraries)
+- Manual serial implementation
+- Bitmap-
